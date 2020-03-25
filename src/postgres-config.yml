@@ -1,0 +1,5 @@
+postgresqlUsername: notes-app
+postgresqlPassword: notes-app-server-password
+postgresqlDatabase: notes-app
+image:
+  tag: 12.2.0-debian-10-r42
