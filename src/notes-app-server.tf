@@ -15,10 +15,6 @@ data "helm_repository" "stable-repo" {
 }
 
 data "helm_repository" "postgres-repo" {
-  depends_on = [
-    kubernetes_namespace.notes-app-namespace
-  ]
-
   name = "bitnami"
   url = "https://charts.bitnami.com/bitnami"
 }
