@@ -113,6 +113,7 @@ resource "kubernetes_deployment" "notes-app-server" {
 resource "helm_release" "ingress-controller" {
   chart = "stable/nginx-ingress"
   name = "nginx-ingress"
+  namespace = local.namespace
 
   set {
     name = "controller.publishService.enabled"
