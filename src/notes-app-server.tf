@@ -34,8 +34,13 @@ resource "helm_release" "postgres" {
   namespace = local.namespace
 
   set {
+    name = "image.repository"
+    value = "postgres"
+  }
+
+  set {
     name = "image.tag"
-    value = "12.2.0-debian-10-r42"
+    value = "12.2"
   }
 
   set {
