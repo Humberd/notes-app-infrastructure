@@ -9,10 +9,9 @@ locals {
   }
 }
 
-resource "kubernetes_namespace" "notes-app-namespace" {
-  metadata {
-    name = local.namespace
-  }
+data "helm_repository" "stable-repo" {
+  name = "stable"
+  url = "https://kubernetes-charts.storage.googleapis.com/"
 }
 
 data "helm_repository" "postgres-repo" {
@@ -22,6 +21,12 @@ data "helm_repository" "postgres-repo" {
 
   name = "bitnami"
   url = "https://charts.bitnami.com/bitnami"
+}
+
+resource "kubernetes_namespace" "notes-app-namespace" {
+  metadata {
+    name = local.namespace
+  }
 }
 
 resource "helm_release" "postgres" {
