@@ -110,6 +110,16 @@ resource "kubernetes_deployment" "notes-app-server" {
   }
 }
 
+resource "helm_release" "ingress-controller" {
+  chart = "stable/nginx-ingress"
+  name = "nginx-ingress"
+
+  set {
+    name = "controller.publishService.enabled"
+    value = true
+  }
+}
+
 resource "kubernetes_service" "notes-app-server" {
   metadata {
     name = "notes-app-server"
@@ -125,3 +135,25 @@ resource "kubernetes_service" "notes-app-server" {
     }
   }
 }
+
+resource "kubernetes_ingress" "notes-app-server" {
+  metadata {
+    name = "notes-app-server-ingress"
+    namespace = local.namespace
+  }
+  spec {
+    rule {
+      host = "api.notes-app.humberd.pl"
+      http {
+        path {
+          backend {
+            service_name = "notes-app-server"
+            service_port = 8080
+          }
+          path = "/"
+        }
+      }
+    }
+  }
+}
+
