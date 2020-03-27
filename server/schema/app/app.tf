@@ -5,13 +5,8 @@ locals {
     postgres_username = "notes-app"
     postgres_password = "notes-app-server-password"
     postgres_db = "notes-app"
-    postgres_url = "notes-app-postgres-postgresql.notes-app.svc.cluster.local:5432"
+    postgres_url = "notes-app-postgres-postgresql:5432"
   }
-}
-
-data "helm_repository" "stable-repo" {
-  name = "stable"
-  url = "https://kubernetes-charts.storage.googleapis.com/"
 }
 
 data "helm_repository" "postgres-repo" {
@@ -113,17 +108,6 @@ resource "kubernetes_deployment" "notes-app-server" {
         }
       }
     }
-  }
-}
-
-resource "helm_release" "ingress-controller" {
-  chart = "stable/nginx-ingress"
-  name = "nginx-ingress"
-  namespace = local.namespace
-
-  set {
-    name = "controller.publishService.enabled"
-    value = true
   }
 }
 
