@@ -1,5 +1,7 @@
 module "app" {
   source = "../../schema/app"
+
+  create_namespace = true
 }
 
 module "load_balancer" {

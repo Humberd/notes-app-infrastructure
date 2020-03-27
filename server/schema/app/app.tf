@@ -15,6 +15,8 @@ data "helm_repository" "postgres-repo" {
 }
 
 resource "kubernetes_namespace" "notes-app-namespace" {
+  count = var.create_namespace ? 1 : 0
+
   metadata {
     name = local.namespace
   }
