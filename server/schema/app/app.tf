@@ -24,7 +24,7 @@ resource "kubernetes_namespace" "notes-app-namespace" {
 
 resource "helm_release" "postgres" {
   chart = "bitnami/postgresql"
-  name = "my-app-postgres"
+  name = "notes-app-postgres"
   namespace = local.namespace
 
   set {
