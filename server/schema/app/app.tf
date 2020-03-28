@@ -26,6 +26,7 @@ resource "helm_release" "postgres" {
   chart = "bitnami/postgresql"
   name = "my-app-postgres"
   namespace = local.namespace
+  version = "8.6.10"
 
   set {
     name = "image.repository"
