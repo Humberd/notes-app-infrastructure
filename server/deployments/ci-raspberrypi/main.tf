@@ -13,7 +13,7 @@ provider "helm" {
     token = base64decode(var.kubernetes_token)
   }
 
-  version = "1.1.0"
+  version = "1.1.1"
 }
 
 module "app" {
