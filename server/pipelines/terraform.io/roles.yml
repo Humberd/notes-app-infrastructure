@@ -2,7 +2,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: terraform.io:cluster-admin
-  namespace: notes-app
+  namespace: kube-system
 subjects:
   # You can specify more than one "subject"
   - kind: ServiceAccount
