@@ -23,12 +23,8 @@ resource "kubernetes_namespace" "notes-app-namespace" {
 }
 
 resource "helm_release" "postgres" {
-  depends_on = [
-    data.helm_repository.postgres-repo
-  ]
-
   chart = "bitnami/postgresql"
-  name = "notes-app-postgres"
+  name = "my-app-postgres"
   namespace = local.namespace
 
   set {
