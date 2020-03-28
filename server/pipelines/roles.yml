@@ -19,6 +19,7 @@ subjects:
   # You can specify more than one "subject"
   - kind: ServiceAccount
     name: azure-devops # "name" is case sensitive
+    namespace: notes-app
 roleRef:
   # "roleRef" specifies the binding to a Role / ClusterRole
   kind: Role #this must be Role or ClusterRole
