@@ -129,6 +129,11 @@ resource "kubernetes_ingress" "notes-app-server" {
   metadata {
     name = "notes-app-server-ingress"
     namespace = local.namespace
+    annotations = {
+      "kubernetes.io/ingress.class" = "traefik"
+      "cert-manager.io/cluster-issuer" = "letsencrypt-prod"
+      "ingress.kubernetes.io/ssl-redirect" = true
+    }
   }
   spec {
     rule {
@@ -142,6 +147,10 @@ resource "kubernetes_ingress" "notes-app-server" {
           path = "/"
         }
       }
+    }
+    tls {
+      hosts = ["api.notes-app.humberd.pl"]
+      secret_name = "api-notes-app-humberd-pl-tls"
     }
   }
 }
