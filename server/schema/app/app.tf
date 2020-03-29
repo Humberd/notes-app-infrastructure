@@ -9,11 +9,6 @@ locals {
   }
 }
 
-data "helm_repository" "postgres-repo" {
-  name = "bitnami"
-  url = "https://charts.bitnami.com/bitnami"
-}
-
 resource "kubernetes_namespace" "notes-app-namespace" {
   count = var.create_namespace ? 1 : 0
 
@@ -23,7 +18,8 @@ resource "kubernetes_namespace" "notes-app-namespace" {
 }
 
 resource "helm_release" "postgres" {
-  chart = "bitnami/postgresql"
+  repository = "https://charts.bitnami.com/bitnami"
+  chart = "postgresql"
   name = "notes-app-postgres"
   namespace = local.namespace
 
