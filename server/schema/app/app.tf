@@ -133,7 +133,7 @@ resource "kubernetes_ingress" "notes-app-server" {
   }
   spec {
     rule {
-      host = "api.notes-app.humberd.pl"
+      host = "ap.notes-app.humberd.pl"
       http {
         path {
           backend {
