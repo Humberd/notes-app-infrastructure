@@ -111,12 +111,11 @@ resource "kubernetes_service" "notes-app-server" {
     namespace = local.namespace
   }
   spec {
-    port {
-      port = 8080
-    }
-
     selector = {
       type = "notes-app-server-instance"
+    }
+    port {
+      port = 8080
     }
   }
 }
