@@ -11,6 +11,7 @@ kubectl get secret $TOKEN -n kube-system -o json
 ```
 4. In the kubernetes provider paste the values:
 
-data['ca.crt'] is cluster_ca_certificate
-data.token is token
+data['ca.crt'] --> cluster_ca_certificate
+
+data.token --> token
 
