@@ -7,6 +7,17 @@ locals {
     postgres_db = "notes-app"
     postgres_url = "notes-app-postgres-postgresql:5432"
   }
+
+  oauth = {
+    google = {
+      client_id = "1067793070509-ql9gehqqnd5beilia1c0g3jbug023ict.apps.googleusercontent.com"
+      client_secret = "kvGawd3Ij47bgXlZ4YiTAmA6"
+    }
+    github = {
+      client_id = "a6cf03a0f5c1d72ab91f"
+      client_secret = "35565a3a2b9ad6add496d0c5b981e9c3e825938b"
+    }
+  }
 }
 
 resource "kubernetes_namespace" "notes-app-namespace" {
@@ -99,6 +110,25 @@ resource "kubernetes_deployment" "notes-app-server" {
             value = local.database.postgres_password
           }
 
+          env {
+            name = "OAUTH_GOOGLE_CLIENT_ID"
+            value = local.oauth.google.client_id
+          }
+
+          env {
+            name = "OAUTH_GOOGLE_CLIENT_SECRET"
+            value = local.oauth.google.client_secret
+          }
+
+          env {
+            name = "OAUTH_GITHUB_CLIENT_ID"
+            value = local.oauth.github.client_id
+          }
+
+          env {
+            name = "OAUTH_GITHUB_CLIENT_SECRET"
+            value = local.oauth.github.client_id
+          }
         }
       }
     }
