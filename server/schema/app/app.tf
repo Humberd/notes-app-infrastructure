@@ -18,6 +18,8 @@ locals {
       client_secret = "35565a3a2b9ad6add496d0c5b981e9c3e825938b"
     }
   }
+
+  jwt_secret = "my-secret-secret"
 }
 
 resource "kubernetes_namespace" "notes-app-namespace" {
@@ -128,6 +130,11 @@ resource "kubernetes_deployment" "notes-app-server" {
           env {
             name = "OAUTH_GITHUB_CLIENT_SECRET"
             value = local.oauth.github.client_id
+          }
+
+          env {
+            name = "JWT_SECRET"
+            value = local.jwt_secret
           }
         }
       }
