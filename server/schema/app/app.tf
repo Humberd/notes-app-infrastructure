@@ -129,7 +129,7 @@ resource "kubernetes_deployment" "notes-app-server" {
 
           env {
             name = "OAUTH_GITHUB_CLIENT_SECRET"
-            value = local.oauth.github.client_id
+            value = local.oauth.github.client_secret
           }
 
           env {
